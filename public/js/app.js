@@ -1983,7 +1983,15 @@ vue__WEBPACK_IMPORTED_MODULE_3__.default.component('example-component', __webpac
  */
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_3__.default({
-  el: '#app'
+  el: '#app',
+  mounted: function mounted() {
+    console.log('echo');
+    Echo["private"]("home").listen('NewMessage', function (e) {
+      console.log(e);
+    }).notification(function (notification) {
+      console.log(notification);
+    });
+  }
 });
 
 /***/ }),
@@ -2029,9 +2037,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'pusher',
-  key: "190e47251a85c9d8458e",
-  cluster: "mt1",
-  forceTLS: true
+  key: "qweqweqwe",
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  forceTLS: false,
+  disableStats: true
 });
 
 /***/ }),
@@ -89546,7 +89556,7 @@ Vue.compile = compileToFunctions;
 /******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
 /******/ 				}
 /******/ 			}
-/******/ 			if(runtime) runtime(__webpack_require__);
+/******/ 			if(runtime) var result = runtime(__webpack_require__);
 /******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
 /******/ 			for(;i < chunkIds.length; i++) {
 /******/ 				chunkId = chunkIds[i];
@@ -89555,7 +89565,7 @@ Vue.compile = compileToFunctions;
 /******/ 				}
 /******/ 				installedChunks[chunkIds[i]] = 0;
 /******/ 			}
-/******/ 			__webpack_require__.O();
+/******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
